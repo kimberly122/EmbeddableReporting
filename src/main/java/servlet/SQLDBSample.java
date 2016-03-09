@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.ibm.sqldb.sample;
+package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;

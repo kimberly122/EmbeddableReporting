@@ -1,4 +1,4 @@
-package com.ibm.ba.ers.sample;
+package servlet;
 
 import java.io.IOException;
 import java.io.InputStream;
