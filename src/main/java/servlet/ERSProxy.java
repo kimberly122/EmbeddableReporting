@@ -38,7 +38,7 @@ public class ERSProxy {
 		String target = m_uri + "/ers/v1/connection";
 
 		URL url = new URL(target);
-
+//connecting to the ers connection
 		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 		connection.setRequestMethod("POST");
 
