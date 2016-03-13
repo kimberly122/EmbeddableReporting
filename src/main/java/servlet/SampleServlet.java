@@ -1,5 +1,6 @@
 package servlet;
 
+import connector.ERSProxy;
 import java.io.IOException;
 import java.io.FileInputStream;
 import java.util.Map;
@@ -20,9 +21,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import javax.annotation.Resource;
 
-import org.apache.commons.json.JSONArray;
-import org.apache.commons.json.JSONException;
-import org.apache.commons.json.JSONObject;
+import org.apache.sling.commons.json.JSONArray;
+import org.apache.sling.commons.json.JSONException;
+import org.apache.sling.commons.json.JSONObject;
+
+//import org.json.simple.parser.ParseException;
 
 public class SampleServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -53,9 +56,8 @@ public class SampleServlet extends HttpServlet {
 
 			try {
 				JSONObject services = new JSONObject(vcap);
-
-				@SuppressWarnings("unchecked")
-				Set<String> serviceList = services.keySet();
+				
+				Set<String> serviceList = (Set<String>) services;//.keySet();
 				for (String service : serviceList) {
 					String name = service.toUpperCase();
 					JSONObject credentials = (JSONObject) ((JSONObject) ((JSONArray) services
