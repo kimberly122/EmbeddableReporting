@@ -18,6 +18,7 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+@WebServlet(name = "CloudantUpload", urlPatterns = {"/CloudantUpload"})
 
 public class CloudantUpload extends HttpServlet 
 {
