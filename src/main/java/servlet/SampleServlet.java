@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.text.ParseException;
 import java.io.PrintWriter;
 
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
@@ -26,6 +27,8 @@ import org.apache.sling.commons.json.JSONException;
 import org.apache.sling.commons.json.JSONObject;
 
 //import org.json.simple.parser.ParseException;
+
+@WebServlet(name = "SampleServlet", urlPatterns = {"/SampleServlet"})
 
 public class SampleServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -68,7 +71,7 @@ public class SampleServlet extends HttpServlet {
 						reportingPassword = (String) credentials.get("password");
 					} else if ((name.indexOf("CLOUDANT") != -1) && (bundleUri == null)) {
 						bundleUri = (String) credentials.get("url");
-					} else if ((name.indexOf("MONGOLAB") != -1) && (bundleUri == null)) {
+					} /*else if ((name.indexOf("MONGOLAB") != -1) && (bundleUri == null)) {
 						bundleUri = (String) credentials.get("uri");
 					} else if ((name.indexOf("MONGO") != -1) && (bundleUri == null)) {
 						bundleUri = (String) credentials.get("url");
@@ -76,7 +79,7 @@ public class SampleServlet extends HttpServlet {
 						jdbcUri = (String) credentials.get("jdbcurl");
 						dsUserId = (String) credentials.get("username");
                         dsPassword = (String) credentials.get("password");
-					} else if ((name.indexOf("ANALYTICSWAREHOUSE") != -1 || name.indexOf("DASHDB") != -1) && (jdbcUri == null)) {
+					}*/ else if ((name.indexOf("ANALYTICSWAREHOUSE") != -1 || name.indexOf("DASHDB") != -1) && (jdbcUri == null)) {
 						jdbcUri = (String) credentials.get("jdbcurl");
 						dsUserId = (String) credentials.get("username");
                         dsPassword = (String) credentials.get("password");
@@ -171,10 +174,10 @@ public class SampleServlet extends HttpServlet {
             HttpServletResponse response) throws ServletException, IOException {
         String pathInfo = request.getPathInfo();
         if (pathInfo.compareTo("/") == 0) {
-			loadStaticPage("index.html", request, response);
-		} else if (pathInfo.compareTo("/overview") == 0) {
+			loadStaticPage("index.jsp", request, response);
+		} /*else if (pathInfo.compareTo("/overview") == 0) {
 			loadStaticPage("sample.html", request, response);
-		} else if (pathInfo.startsWith("/ers/v1")) {
+		}*/ else if (pathInfo.startsWith("/ers/v1")) {
             if (m_ersConnection != null) {
                 m_ersConnection.doGet(request, response);
             } else {
