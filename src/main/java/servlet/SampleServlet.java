@@ -10,7 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
-import java.text.ParseException;
+//import java.text.ParseException;
 import java.io.PrintWriter;
 
 import javax.servlet.annotation.WebServlet;
@@ -22,11 +22,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import javax.annotation.Resource;
 
-import org.apache.sling.commons.json.JSONArray;
+/*import org.apache.sling.commons.json.JSONArray;
 import org.apache.sling.commons.json.JSONException;
 import org.apache.sling.commons.json.JSONObject;
-
-//import org.json.simple.parser.ParseException;
+*/
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+//import org.apache.sling.commons.json.JSONException;
+import org.json.simple.parser.ParseException;
 
 @WebServlet(name = "SampleServlet", urlPatterns = {"/SampleServlet"})
 
@@ -58,13 +62,25 @@ public class SampleServlet extends HttpServlet {
 			}
 
 			try {
-				JSONObject services = new JSONObject(vcap);
+				//JSONObject services = new JSONObject(vcap);
 				
-				Set<String> serviceList = (Set<String>) services;//.keySet();
+				@SuppressWarnings("unchecked")
+				//Set<String> serviceList = (Set<String>) services;//.keySet();
+				//Set<String> serviceList =  services.keySet();
+				
+				/*JSONParser parser = new JSONParser();
+				Object services = parser.parse(vcap);
+				JSONObject jsonObject = (JSONObject) services;
+				Set<String> serviceList =  jsonObject.keySet();
+				*/
+				JSONParser parser = new JSONParser();
+				JSONObject services = (JSONObject) parser.parse(env.get("VCAP_SERVICES"));
+				//JSONObject service = null;
+				Set<String> serviceList =  services.keySet();
+				
 				for (String service : serviceList) {
 					String name = service.toUpperCase();
-					JSONObject credentials = (JSONObject) ((JSONObject) ((JSONArray) services
-							.get(service)).get(0)).get("credentials");
+					JSONObject credentials = (JSONObject) ((JSONObject) ((JSONArray) services.get(service)).get(0)).get("credentials");
 					if (name.indexOf("ERSERVICE") != -1) {
 						reportingUri = (String) credentials.get("url");
 						reportingUserId = (String) credentials.get("userid");
@@ -120,7 +136,10 @@ public class SampleServlet extends HttpServlet {
                     }
 
 				}
-			} catch (JSONException e) {
+			} /*catch (JSONException e) {
+			}*/
+			catch(ParseException e){
+				
 			}
 		}
     }
