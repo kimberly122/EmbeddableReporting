@@ -81,11 +81,11 @@ public class SampleServlet extends HttpServlet {
 				for (String service : serviceList) {
 					String name = service.toUpperCase();
 					JSONObject credentials = (JSONObject) ((JSONObject) ((JSONArray) services.get(service)).get(0)).get("credentials");
-					if (name.indexOf("ERSERVICE") != -1) {
+					if (name.indexOf("erservice") != -1) {
 						reportingUri = (String) credentials.get("url");
 						reportingUserId = (String) credentials.get("userid");
 						reportingPassword = (String) credentials.get("password");
-					} else if ((name.indexOf("CLOUDANT") != -1) && (bundleUri == null)) {
+					} else if ((name.indexOf("cloudantNoSQLDB") != -1) && (bundleUri == null)) {
 						bundleUri = (String) credentials.get("url");
 					} /*else if ((name.indexOf("MONGOLAB") != -1) && (bundleUri == null)) {
 						bundleUri = (String) credentials.get("uri");
@@ -95,7 +95,7 @@ public class SampleServlet extends HttpServlet {
 						jdbcUri = (String) credentials.get("jdbcurl");
 						dsUserId = (String) credentials.get("username");
                         dsPassword = (String) credentials.get("password");
-					}*/ else if ((name.indexOf("ANALYTICSWAREHOUSE") != -1 || name.indexOf("DASHDB") != -1) && (jdbcUri == null)) {
+					}*/ else if ((name.indexOf("ANALYTICSWAREHOUSE") != -1 || name.indexOf("dashDB") != -1) && (jdbcUri == null)) {
 						jdbcUri = (String) credentials.get("jdbcurl");
 						dsUserId = (String) credentials.get("username");
                         dsPassword = (String) credentials.get("password");
