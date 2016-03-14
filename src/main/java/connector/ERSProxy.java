@@ -9,6 +9,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Enumeration;
 
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.ServletException;
 import javax.servlet.ServletInputStream;
 import javax.servlet.ServletOutputStream;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import javax.xml.bind.DatatypeConverter;
 
+@WebServlet(name = "ERSProxy", urlPatterns = {"/ERSProxy"})
 public class ERSProxy {
 	private static final int BUFFER_SIZE = 32767;
 

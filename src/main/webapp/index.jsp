@@ -138,7 +138,7 @@
        	<div><%= request.getAttribute("msg") %></div>
     <% } %> 
 		<h3> View Reports</h3>
-		<form action="SampleServlet" method="POST" enctype="multipart/form-data">
+		<form action="ERSProxy" method="POST" enctype="multipart/form-data">
 			<input type="submit" value="view created report"/>
 		</form>
 		<!--<div class="reports"></div>-->
