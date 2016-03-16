@@ -77,7 +77,10 @@ public class EmbeddableReportingConnector {
 			reportingUri = credentials.get("url").toString();
 			reportingPassword = credentials.get("password").toString();
 			reportingUserId = credentials.get("userid").toString();
-            
+            this.repUserID = reportingUserId;
+            this.repPassword = reportingPassword;
+			this.ersURL = reportingUri;
+					
         } catch (ParseException ex) {
         }
 	/*
