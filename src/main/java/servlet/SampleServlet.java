@@ -45,7 +45,7 @@ public class SampleServlet extends HttpServlet {
 	EmbeddableReportingConnector ersConnector = new EmbeddableReportingConnector();
         
 	private static final int BUFFER_SIZE = 32767;
-	private String m_uri = ersConnector.getERSUrl();//"https://erservice-impl.ng.bluemix.net";
+	private String m_uri = "https://erservice-impl.ng.bluemix.net";
 	
 	
     @Override
