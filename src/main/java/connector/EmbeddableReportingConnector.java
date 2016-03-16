@@ -49,13 +49,13 @@ public class EmbeddableReportingConnector {
 	
     private void setConnection() {
 		Map<String, String> env = System.getenv();
-			String vcap = env.get("VCAP_SERVICES");
-			if (vcap == null) {
+			String vcapCheck = env.get("VCAP_SERVICES");
+			if (vcapCheck == null) {
 				System.out.println("No VCAP_SERVICES found");
 				return;
 			}
 			
-    	if (vcap != null) {
+    	if (vcapCheck != null) {
 			String bundleUri = null;
 			String reportingUri = null;
 			String reportingUserId = null;
@@ -150,8 +150,8 @@ public class EmbeddableReportingConnector {
 			}*/
 		/*	catch(ParseException e){
 				
-			}
-		}*/
+			}*/
+		}
 		}
 	
 		public String getERSUserID() {
