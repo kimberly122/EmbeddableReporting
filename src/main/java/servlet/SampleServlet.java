@@ -42,16 +42,16 @@ import org.json.simple.parser.ParseException;
 @WebServlet(name = "SampleServlet", urlPatterns = {"/SampleServlet"})
 
 public class SampleServlet extends HttpServlet {	
-//	private static ERSProxy m_ersConnection = null;	
+	EmbeddableReportingConnector ersConnector = new EmbeddableReportingConnector();
         
 	private static final int BUFFER_SIZE = 32767;
-	private String m_uri = "https://erservice-impl.ng.bluemix.net";
-	String reportingUserId = "2e2ed450-7ec0-45e0-89ef-5772f0b29d4b";
+	private String m_uri = ersConnector.getERSUrl();//"https://erservice-impl.ng.bluemix.net";
+	/*String reportingUserId = "2e2ed450-7ec0-45e0-89ef-5772f0b29d4b";
 	String reportingPassword = "5df825c3-ce77-4525-bba4-e64a6d183ff7";
 	private String m_bundleUri = "https://2549fade-55f6-4bfc-8791-f06f99e1feeb-bluemix:c288fcf5d6cfa5df0cc7f8480c2c00b298986c2b4567466ff699236d287403d7@2549fade-55f6-4bfc-8791-f06f99e1feeb-bluemix.cloudant.com";
 	private String m_authenticationInfo = "2e2ed450-7ec0-45e0-89ef-5772f0b29d4b:5df825c3-ce77-4525-bba4-e64a6d183ff7";
 	private String m_cookies;
-	String userandpass = "2e2ed450-7ec0-45e0-89ef-5772f0b29d4b:5df825c3-ce77-4525-bba4-e64a6d183ff7";
+	String userandpass = "2e2ed450-7ec0-45e0-89ef-5772f0b29d4b:5df825c3-ce77-4525-bba4-e64a6d183ff7";*/
         String passString;
 	
 
@@ -377,6 +377,7 @@ private int doConnect(String method, HttpServletRequest request,
     protected void doGet(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
         String inputDefinitions = (String) request.getParameter("definitions");
+		
 		String link = m_uri + inputDefinitions + "/reports/html";
                 
        request.setAttribute("postConnection",link);
