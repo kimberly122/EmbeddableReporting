@@ -9,7 +9,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Enumeration;
 
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.ServletException;
 import javax.servlet.ServletInputStream;
 import javax.servlet.ServletOutputStream;
@@ -18,7 +17,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import javax.xml.bind.DatatypeConverter;
 
-@WebServlet(name = "ERSProxy", urlPatterns = {"/ERSProxy"})
 public class ERSProxy {
 	private static final int BUFFER_SIZE = 32767;
 
@@ -40,7 +38,7 @@ public class ERSProxy {
 		String target = m_uri + "/ers/v1/connection";
 
 		URL url = new URL(target);
-//connecting to the ers connection
+	//connecting to the ers connection
 		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 		connection.setRequestMethod("POST");
 
@@ -53,12 +51,8 @@ public class ERSProxy {
 							+ DatatypeConverter
 									.printBase64Binary(m_authenticationInfo
 											.getBytes()));
-			System.out.println("Authorization: "+"Basic "
-							+ DatatypeConverter
-									.printBase64Binary(m_authenticationInfo
-											.getBytes()));
 		}
-
+	
 
 		String request = "{ \"bundleUri\":\"" + m_bundleUri + "\"}";
 
@@ -83,7 +77,7 @@ public class ERSProxy {
 
 			try {
 				status = connection.getResponseCode();
-				System.out.println("Connect Response Code: "+status);
+				//System.out.println("Connect Response Code: "+status);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -98,6 +92,7 @@ public class ERSProxy {
 					response.write(buffer, 0, read);
 					System.out.print(new String(buffer, 0, read));
 				}
+				
 				System.out.println("");
 
 			
