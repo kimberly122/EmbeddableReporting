@@ -43,6 +43,7 @@ public class EmbeddableReportingConnector {
 	private String cloudantURL;
 	
  public EmbeddableReportingConnector() {
+	
         setConnection();
     }
 	
@@ -64,8 +65,22 @@ public class EmbeddableReportingConnector {
             String dsPassword = null;
             boolean isAnalyticsWarehouse = false;
 
-			
-
+			try {
+            String envServices = System.getenv("VCAP_SERVICES");
+            
+            JSONParser parser = new JSONParser();
+            Object obj = parser.parse(envServices);
+            JSONObject jsonObject = (JSONObject) obj;
+            JSONArray vcapArray = (JSONArray) jsonObject.get("erservice");
+            JSONObject vcap = (JSONObject) vcapArray.get(0);
+            JSONObject credentials = (JSONObject) vcap.get("credentials");
+			reportingUri = credentials.get("url").toString();
+			reportingPassword = credentials.get("password").toString();
+			reportingUserId = credentials.get("userid").toString();
+            
+        } catch (ParseException ex) {
+        }
+	/*
 			try {
 				//JSONObject services = new JSONObject(vcap);
 				
@@ -133,10 +148,10 @@ public class EmbeddableReportingConnector {
 				
 			} /*catch (JSONException e) {
 			}*/
-			catch(ParseException e){
+		/*	catch(ParseException e){
 				
 			}
-		}
+		}*/
 		}
 	
 		public String getERSUserID() {
