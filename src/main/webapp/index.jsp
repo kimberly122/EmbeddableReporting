@@ -29,7 +29,7 @@
 	<% } %> 
         
 		<% if (request.getAttribute("postConnection") != null) { %>
-       	<div><iframe src = <%= request.getAttribute("postConnection") %></div>
+       	<div><iframe src = "<%= request.getAttribute("postConnection") %>" width="100%" height="400" </div>
     <% } %> 
     <!--<div><iframe src="https://erservice-impl.ng.bluemix.net/ers/v1/definitions/1b5ed4dccc65e78bc6510cf95555e27c/reports/phtml"></div>
     -->
